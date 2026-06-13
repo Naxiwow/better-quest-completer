@@ -34,7 +34,6 @@ Based on the original work by [k4g9](https://github.com/k4g9/discord-quest-compl
 - Toggle each quest type individually
 - Configurable speed multiplier (1x real time → 7x fast)
 - Configurable delay between quests
-- Notifies you when orb is ready to claim (Discord requires manual click — captcha protected)
 - Auto-start on plugin load
 - Desktop notifications for each step
 
@@ -48,7 +47,6 @@ Based on the original work by [k4g9](https://github.com/k4g9/discord-quest-compl
 | **Auto Start** | off | Run automatically when plugin loads |
 | **Delay Between Quests** | 5s | Wait between completing multiple quests |
 | **Speed Multiplier** | 7 | 1 = real time, 7 = max speed |
-| **Auto Claim Orb** | on | Notify when orb is ready (manual click required — Discord captcha-gates `/claim-reward`) |
 | **Allow WATCH_VIDEO** | on | Enable this quest type |
 | **Allow PLAY_ON_DESKTOP** | on | Enable this quest type |
 | **Allow STREAM_ON_DESKTOP** | on | Enable this quest type |

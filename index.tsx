@@ -53,15 +53,6 @@ if(quests.length === 0) {
 					dismissOnClick: false,
                 })
 } else {
-	let claimReward = (questId, questName) => {
-		if(!settings.store.autoClaimOrb) return
-		showNotification({
-			title: `Claim your orb: ${questName}`,
-			body: `Quest done — open Discord quests tab and click Claim.`,
-			dismissOnClick: false,
-		})
-	}
-
 	let doJob = function() {
 		const quest = quests.pop()
 		if(!quest) return
@@ -104,9 +95,7 @@ if(quests.length === 0) {
                     title: `Quest completed!`,
                     body: `${questName} - quest was successfully completed.`,
 					dismissOnClick: false,
-                })
-				await claimReward(quest.id, questName)
-				doJob()
+                })				doJob()
 			}
 			fn()
 			showNotification({
@@ -249,9 +238,7 @@ if(quests.length === 0) {
                     title: `Quest completed!`,
                     body: `${questName} - quest was successfully completed.`,
 					dismissOnClick: false,
-					})
-				await claimReward(quest.id, questName)
-				await new Promise(r => setTimeout(r, (settings.store.delayBetweenQuests ?? 5) * 1000))
+					})				await new Promise(r => setTimeout(r, (settings.store.delayBetweenQuests ?? 5) * 1000))
 				doJob()
 			}
 			fn()
@@ -323,11 +310,6 @@ const settings = definePluginSettings({
         markers: [1, 2, 3, 4, 5, 6, 7],
         default: 7,
         stickToMarkers: true,
-    },
-    autoClaimOrb: {
-        type: OptionType.BOOLEAN,
-        default: true,
-        description: "auto claim orb after quest",
     },
 });
 
