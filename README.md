@@ -30,12 +30,19 @@ Based on the original work by [k4g9](https://github.com/k4g9/discord-quest-compl
 
 ## Features
 
-- Supports all quest types: `WATCH_VIDEO`, `PLAY_ON_DESKTOP`, `STREAM_ON_DESKTOP`, `PLAY_ACTIVITY`, `WATCH_VIDEO_ON_MOBILE`
-- Toggle each quest type individually
-- Configurable speed multiplier (1x real time → 7x fast)
-- Configurable delay between quests
-- Auto-start on plugin load
-- Desktop notifications for each step
+- **Accepts every available quest for you**, then completes them all (no need to open the Quests tab)
+- **Several quests at once**: videos and activities in parallel, all simulated games in one batch
+- Supports the quest types `WATCH_VIDEO`, `WATCH_VIDEO_ON_MOBILE`, `PLAY_ON_DESKTOP`, `STREAM_ON_DESKTOP`, `PLAY_ACTIVITY` (a quest only needs ONE of its tasks)
+- Handles Discord's rate limits: queued requests, retry after `retry_after`, temporary failures retried up to 3 times
+- Waits for simulated games the way Discord counts them (about two at a time) and only gives up after 15 minutes without progress
+- Re-click the header button to stop; optionally re-checks for new quests every N minutes
+- Toggle each quest type individually, configurable speed multiplier (1x → 7x)
+- Reward claiming stays **manual**: Discord captcha-gates `/claim-reward`
+- Desktop notifications with a final summary
+
+Not supported: `ACHIEVEMENT_IN_ACTIVITY` quests, and video quests that only exist on mobile (Discord rejects the desktop event). `PLAY_ON_DESKTOP` / `STREAM_ON_DESKTOP` need the desktop app.
+
+> Needs a recent Equicord: it relies on `QuestStore`, `RunningGameStore`, `ApplicationStreamingStore` and Discord's own `fetchCurrentQuests`.
 
 ---
 
@@ -45,7 +52,10 @@ Based on the original work by [k4g9](https://github.com/k4g9/discord-quest-compl
 |---|---|---|
 | **Enable Notifications** | on | Show notifications for each step |
 | **Auto Start** | off | Run automatically when plugin loads |
-| **Delay Between Quests** | 5s | Wait between completing multiple quests |
+| **Repeat Every (minutes)** | 30 | With Auto Start: look for new quests again every N minutes (0 = never) |
+| **Auto Enroll** | on | Accept every available quest, not only the ones you already accepted |
+| **Parallel** | on | Do several quests at the same time (off = one after the other) |
+| **Delay Between Quests** | 5s | Wait between quests when Parallel is off |
 | **Speed Multiplier** | 7 | 1 = real time, 7 = max speed |
 | **Allow WATCH_VIDEO** | on | Enable this quest type |
 | **Allow PLAY_ON_DESKTOP** | on | Enable this quest type |
